@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <p>Location of Incident: </p>
-            <input [(ngModel)]="this.location" class="form-control" id="location" type="text">
+            <input [(ngModel)]="this.location" class="form-control" id="location" type="text" style="width: 350px">
         </div>
 
         <br><br>
@@ -41,21 +41,29 @@
 
         <div class="form-group">
             <p>Status: </p>
-            <input [(ngModel)]="this.status" class="form-control" id="description" type="text">
+            <select [(ngModel)]="this.status" class="form-control" id="description" type="text">
+                <option value="new"> NEW </option>
+                <option value="current"> IN PROGRESS </option>
+                <option value="old"> COMPLETED </option>
+            </select>
         </div>
 
         <br><br>
 
         <div class="form-group">
             <p>Equipment: </p>
-            <input [(ngModel)]="this.equipment_needed" class="form-control" id="equipment" type="text">
+            <input [(ngModel)]="this.equipment_needed" class="form-control" id="equipment" type="text" style="width: 350px">
         </div>
 
         <br><br>
 
         <div class="form-group">
             <p>Severity: </p>
-            <input [(ngModel)]="this.severity" class="form-control" id="severity" type="text">
+            <select [(ngModel)]="this.severity" class="form-control" id="severity" type="text">
+                <option value="low"> LOW </option>
+                <option value="medium"> MEDIUM </option>
+                <option value="high"> HIGH </option>
+            </select>
         </div>
 
         <br><br>
@@ -64,6 +72,27 @@
             <button (click)="makeNewReport()">Create</button>
         </div>
 
+    </div>
+
+</div>
+
+<div *ngIf="page === 'dispatch'" style="text-align: center;">
+
+<!--    Incident -->
+    <div class="form-group">
+        <p> Incident: </p>
+        <select [(ngModel)]="this.incident_id" class="form-control" id="incident_id" type="text">
+<!--            <option> {{type}} + ' at ' + {{location}}</option> -->
+            <option> Blown Fuse at 9388-9982 Old Selma Rd, Montgomery, AL 36108 </option>
+        </select>
+    </div>
+
+<!--    Crew -->
+    <div class="form-group">
+        <p> Crew Assignment: </p>
+        <select [(ngModel)]="this.selected_crew" class="form-control" id="selected_crew" type="text">
+            
+        </select>
     </div>
 
 </div>
