@@ -87,12 +87,47 @@
         </select>
     </div>
 
+    <br><br>
+
 <!--    Crew -->
     <div class="form-group">
         <p> Crew Assignment: </p>
         <select [(ngModel)]="this.selected_crew" class="form-control" id="selected_crew" type="text">
-            
+<!--            <option> {{crewname}} </option> -->
+            <option> Rachel's super crew </option>
         </select>
+    </div>
+
+    <br><br>
+
+<!--    Submit button -->
+    <div *ngIf="this.selected_crew != null">
+        <button (click)="assignCrew(incident_id, selected_crew)"> ASSIGN </button>
+    </div>
+
+</div>
+
+<div *ngIf="page === 'workforce'" style="text-align: center;">
+
+    <div class="card bg-danger">
+
+        <h3> Rachel's Super Crew </h3>
+
+        <div class="row">
+
+            <div class="col">
+                <p> Crew Specilizations / Equipment </p>
+            </div>
+
+            <div class="col">
+                <p> [list of personnel on crew] </p>
+            </div>
+
+        </div>
+
+        <button> EDIT </button>
+        <button> DELETE </button>
+
     </div>
 
 </div>

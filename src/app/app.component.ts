@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
     equipment_needed: string;
     severity: string;
 
+    selected_crew: string;
     incident_id: string;
 
     ngOnInit(): void {
@@ -38,7 +39,5 @@ export class AppComponent implements OnInit {
         }
 
     }
-
-    public makeNewReport() {}
 
 }
