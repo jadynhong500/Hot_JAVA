@@ -5,7 +5,8 @@
     <a (click)="changePage('home')" class="active" href="#home" id="nav-home">Home</a>
     <a (click)="changePage('report')" href="#report" id="nav-report">Report Incident</a>
     <a (click)="changePage('dispatch')" href="#dispatch" id="nav-dispatch">Dispatch</a>
-    <a (click)="changePage('workforce')" href="#workforce" id="nav-workforce">Workforce Management</a>
+    <a (click)="changePage('crews')" class="dropdown-item" href="#crews"> Crews </a>
+    <a (click)="changePage('workers')" class="dropdown-item" href="#workers"> Workers </a>
 
 </div>
 
@@ -23,7 +24,7 @@
 
         <div class="form-group">
             <p>Location of Incident: </p>
-            <input [(ngModel)]="this.location" class="form-control" id="location" type="text" style="width: 350px">
+            <input [(ngModel)]="this.location" class="form-control" id="location" style="width: 350px" type="text">
         </div>
 
         <br><br>
@@ -31,9 +32,9 @@
         <div class="form-group">
             <p>Type of Incident: </p>
             <select [(ngModel)]="this.type" class="form-control" id="type" type="text">
-                <option value="poles"> Broken Poles & Conductors </option>
-                <option value="transformers"> Damanged Transformers </option>
-                <option value="fuse"> Blown Fuse </option>
+                <option value="poles"> Broken Poles & Conductors</option>
+                <option value="transformers"> Damanged Transformers</option>
+                <option value="fuse"> Blown Fuse</option>
             </select>
         </div>
 
@@ -42,9 +43,9 @@
         <div class="form-group">
             <p>Status: </p>
             <select [(ngModel)]="this.status" class="form-control" id="description" type="text">
-                <option value="new"> NEW </option>
-                <option value="current"> IN PROGRESS </option>
-                <option value="old"> COMPLETED </option>
+                <option value="new"> NEW</option>
+                <option value="current"> IN PROGRESS</option>
+                <option value="old"> COMPLETED</option>
             </select>
         </div>
 
@@ -52,7 +53,8 @@
 
         <div class="form-group">
             <p>Equipment: </p>
-            <input [(ngModel)]="this.equipment_needed" class="form-control" id="equipment" type="text" style="width: 350px">
+            <input [(ngModel)]="this.equipment_needed" class="form-control" id="equipment" style="width: 350px"
+                   type="text">
         </div>
 
         <br><br>
@@ -60,9 +62,9 @@
         <div class="form-group">
             <p>Severity: </p>
             <select [(ngModel)]="this.severity" class="form-control" id="severity" type="text">
-                <option value="low"> LOW </option>
-                <option value="medium"> MEDIUM </option>
-                <option value="high"> HIGH </option>
+                <option value="low"> LOW</option>
+                <option value="medium"> MEDIUM</option>
+                <option value="high"> HIGH</option>
             </select>
         </div>
 
@@ -78,36 +80,36 @@
 
 <div *ngIf="page === 'dispatch'" style="text-align: center;">
 
-<!--    Incident -->
+    <!--    Incident -->
     <div class="form-group">
         <p> Incident: </p>
         <select [(ngModel)]="this.incident_id" class="form-control" id="incident_id" type="text">
-<!--            <option> {{type}} + ' at ' + {{location}}</option> -->
-            <option> Blown Fuse at 9388-9982 Old Selma Rd, Montgomery, AL 36108 </option>
+            <!--            <option> {{type}} + ' at ' + {{location}}</option> -->
+            <option> Blown Fuse at 9388-9982 Old Selma Rd, Montgomery, AL 36108</option>
         </select>
     </div>
 
     <br><br>
 
-<!--    Crew -->
+    <!--    Crew -->
     <div class="form-group">
         <p> Crew Assignment: </p>
         <select [(ngModel)]="this.selected_crew" class="form-control" id="selected_crew" type="text">
-<!--            <option> {{crewname}} </option> -->
-            <option> Rachel's super crew </option>
+            <!--            <option> {{crewname}} </option> -->
+            <option> Rachel's super crew</option>
         </select>
     </div>
 
     <br><br>
 
-<!--    Submit button -->
+    <!--    Submit button -->
     <div *ngIf="this.selected_crew != null">
-        <button (click)="assignCrew(incident_id, selected_crew)"> ASSIGN </button>
+        <button (click)="assignCrew(incident_id, selected_crew)"> ASSIGN</button>
     </div>
 
 </div>
 
-<div *ngIf="page === 'workforce'" style="text-align: center;">
+<div *ngIf="page === 'crews'" style="text-align: center;">
 
     <div class="card bg-danger">
 
@@ -125,8 +127,66 @@
 
         </div>
 
-        <button> EDIT </button>
-        <button> DELETE </button>
+        <button> EDIT</button>
+        <button> DELETE</button>
+
+    </div>
+
+</div>
+
+<div *ngIf="page === 'workers'" style="text-align: center">
+
+    <br><br><br>
+
+    <div class="card" style="border: solid 1px black; display: inline-block; background-color: deepskyblue">
+
+        <h3> John Doe </h3>
+
+        <p> Specialties: Wiring Expert </p>
+        <p> Equipment: Wiring kit </p>
+        <p> Availability: Available </p>
+        <p> Current Crew: Rachel's Super Crew </p>
+
+        <button> EDIT</button>
+
+    </div>
+
+    <div class="card" style="border: solid 1px black; display: inline-block; background-color: deepskyblue;">
+
+        <h3> Jeff Myers </h3>
+
+        <p> Specialties: Heavy Machinery Expert </p>
+        <p> Equipment: Crane Truck </p>
+        <p> Availability: Available </p>
+        <p> Current Crew: Rachel's Super Crew </p>
+
+        <button> EDIT</button>
+
+    </div>
+
+    <div class="card" style="border: solid 1px black; display: inline-block; background-color: darkgrey">
+
+        <h3> Jeremy Doe </h3>
+
+        <p> Specialties: Wiring Apprentice </p>
+        <p> Equipment: Wiring kit </p>
+        <p> Availability: Not Available </p>
+        <p> Current Crew: Vacation </p>
+
+        <button> EDIT</button>
+
+    </div>
+
+    <div class="card" style="border: solid 1px black; display: inline-block; background-color: deepskyblue;">
+
+        <h3> John Juan </h3>
+
+        <p> Specialties: Tree Removal </p>
+        <p> Equipment: Chainsaw, shovel </p>
+        <p> Availability: Available </p>
+        <p> Current Crew: Rachel's Super Crew </p>
+
+        <button> EDIT</button>
 
     </div>
 

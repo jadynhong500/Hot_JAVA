@@ -22,21 +22,14 @@ export class AppComponent implements OnInit {
     }
 
     public changePage(newPage: string) {
-        if (newPage === 'home') {
-            this.page = 'home';
-        }
+        this.page = newPage;
+    }
 
-        if (newPage === 'report') {
-            this.page = 'report';
-        }
+    public makeNewReport() {
 
-        if (newPage === 'dispatch') {
-            this.page = 'dispatch';
-        }
+    }
 
-        if (newPage === 'workforce') {
-            this.page = 'workforce';
-        }
+    public assignCrew(incident, crew) {
 
     }
 
