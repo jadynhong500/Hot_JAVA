@@ -17,9 +17,10 @@ export class AppComponent implements OnInit {
     severity: string;
 
     selected_crew: string;
-    incident_id: string;
+    incident_id: number;
 
     ngOnInit(): void {
+        this.incident_id = Math.random() * 10000 + 1;
     }
 
     public changePage(newPage: string) {
@@ -27,11 +28,11 @@ export class AppComponent implements OnInit {
     }
 
     public makeNewReport() {
-
+        this.subPage = 'madeNewReport';
     }
 
     public assignCrew(incident, crew) {
-
+        this.subPage = 'dispatched';
     }
 
     public addNewCrew() {

@@ -1,4 +1,10 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<html>
+
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
 
 <div class="topnav" id="myTopnav" style="align-items: center">
 
@@ -10,9 +16,20 @@
 
 </div>
 
-<div *ngIf="page === 'home'" class="container-fluid bg-dark" style="text-align: center">
+<div *ngIf="page === 'home'" class="container-fluid bg-dark" style="text-align: center;">
 
-    <h3 style="color: black; display: inline-block"> Welcome! </h3>
+    <br>
+
+    <img class="logo" src="../assets/Em24.png">
+
+    <br>
+
+    <div style="width: 340px; display: inline-block; font-weight: bold">
+        <p>Our solution, Em24, is the first application of its kind that efficiently and effectively routes emergency
+            services to incidents, integrates with emergency vehicles, allows for creation and selection or allocation
+            of crews to incident sites, manages worker profiles to be inputted into groups with changes in worker
+            availability, and has incident reporting capabilities.</p>
+    </div>
 
 </div>
 
@@ -24,7 +41,7 @@
 
         <div class="form-group">
             <p>Location of Incident: </p>
-            <input [(ngModel)]="this.location" class="form-control" id="location" style="width: 350px" type="text">
+            <input [(ngModel)]="this.location" class="form-control" id="location" style="width: 300px" type="text">
         </div>
 
         <br><br>
@@ -53,7 +70,7 @@
 
         <div class="form-group">
             <p>Equipment: </p>
-            <input [(ngModel)]="this.equipment_needed" class="form-control" id="equipment" style="width: 350px"
+            <input [(ngModel)]="this.equipment_needed" class="form-control" id="equipment" style="width: 300px"
                    type="text">
         </div>
 
@@ -74,6 +91,13 @@
             <button (click)="makeNewReport()">Create</button>
         </div>
 
+        <div *ngIf="subPage === 'madeNewReport'">
+            <br>
+            <h1 style="color: green">
+                Incident #{{this.incident_id.toFixed(0)}} Reported!
+            </h1>
+        </div>
+
     </div>
 
 </div>
@@ -83,7 +107,7 @@
     <!--    Incident -->
     <div class="form-group">
         <p> Incident: </p>
-        <select [(ngModel)]="this.incident_id" class="form-control" id="incident_id" type="text">
+        <select [(ngModel)]="this.incident_id" class="form-control" id="incident_id" style="width: 300px;" type="text">
             <!--            <option> {{type}} + ' at ' + {{location}}</option> -->
             <option> Blown Fuse at 9388-9982 Old Selma Rd, Montgomery, AL 36108</option>
         </select>
@@ -96,7 +120,7 @@
         <p> Crew Assignment: </p>
         <select [(ngModel)]="this.selected_crew" class="form-control" id="selected_crew" type="text">
             <!--            <option> {{crewname}} </option> -->
-            <option> Rachel's super crew</option>
+            <option> A Team</option>
         </select>
     </div>
 
@@ -105,6 +129,11 @@
     <!--    Submit button -->
     <div *ngIf="this.selected_crew != null">
         <button (click)="assignCrew(incident_id, selected_crew)"> ASSIGN</button>
+    </div>
+
+    <div *ngIf="subPage === 'dispatched'">
+        <br>
+        <h1 style="color: green"> Notifications Dispatched! </h1>
     </div>
 
 </div>
@@ -134,23 +163,25 @@
             <input type="text">
         </div>
         <br>
-        <button (click)="closePopUp()"> Cancel </button>
-        <button> Add more Members... </button>
-        <button (click)="closePopUp()"> Finish </button>
+        <button (click)="closePopUp()"> Cancel</button>
+        <button> Add more Members...</button>
+        <button (click)="closePopUp()"> Finish</button>
     </div>
 
     <div class="card bg-danger">
 
-        <h3> Rachel's Super Crew </h3>
+        <h3> A Team </h3>
 
         <div class="row">
 
             <div class="col">
-                <p> Crew Specilizations / Equipment </p>
+                <p> Tree Removal & Line Crew </p>
             </div>
 
             <div class="col">
-                <p> [list of personnel on crew] </p>
+                <p> John Doe </p>
+                <p> Jeff Myers </p>
+                <p> John Juan </p>
             </div>
 
         </div>
@@ -170,10 +201,10 @@
 
         <h3> John Doe </h3>
 
-        <p> Specialties: Wiring Expert </p>
-        <p> Equipment: Wiring kit </p>
+        <p> Phone: 334-111-1920 </p>
+        <p> Skill level: Troubleman </p>
         <p> Availability: Available </p>
-        <p> Current Crew: Rachel's Super Crew </p>
+        <p> Equipment: Pickup </p>
 
         <button> EDIT</button>
 
@@ -183,10 +214,10 @@
 
         <h3> Jeff Myers </h3>
 
-        <p> Specialties: Heavy Machinery Expert </p>
-        <p> Equipment: Crane Truck </p>
+        <p> Phone: 334-209-1920 </p>
+        <p> Skill level: Tree Removal </p>
         <p> Availability: Available </p>
-        <p> Current Crew: Rachel's Super Crew </p>
+        <p> Equipment: Flatbed </p>
 
         <button> EDIT</button>
 
@@ -196,10 +227,10 @@
 
         <h3> Jeremy Doe </h3>
 
-        <p> Specialties: Wiring Apprentice </p>
-        <p> Equipment: Wiring kit </p>
-        <p> Availability: Not Available </p>
-        <p> Current Crew: Vacation </p>
+        <p> Phone: 334-251-1920 </p>
+        <p> Skill level: Lineman </p>
+        <p> Availability: Other </p>
+        <p> Equipment: High Bucket </p>
 
         <button> EDIT</button>
 
@@ -209,13 +240,17 @@
 
         <h3> John Juan </h3>
 
-        <p> Specialties: Tree Removal </p>
-        <p> Equipment: Chainsaw, shovel </p>
+        <p> Phone: 334-221-1929 </p>
+        <p> Skill level: Transformer Repair </p>
         <p> Availability: Available </p>
-        <p> Current Crew: Rachel's Super Crew </p>
+        <p> Equipment: Pickup </p>
 
         <button> EDIT</button>
 
     </div>
 
 </div>
+
+</body>
+
+</html>
