@@ -8,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
     title = 'Em24';
     page = 'home';
+    subPage: string;
 
     location: string;
     type: string;
@@ -31,6 +32,14 @@ export class AppComponent implements OnInit {
 
     public assignCrew(incident, crew) {
 
+    }
+
+    public addNewCrew() {
+        this.subPage = 'newCrew';
+    }
+
+    public closePopUp() {
+        this.subPage = '';
     }
 
 }

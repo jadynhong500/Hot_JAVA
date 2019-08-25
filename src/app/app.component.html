@@ -111,6 +111,34 @@
 
 <div *ngIf="page === 'crews'" style="text-align: center;">
 
+    <br><br>
+
+    <button (click)="addNewCrew()"> Add new Crew </button>
+
+    <br><br>
+
+    <div *ngIf="subPage === 'newCrew'">
+        <h2> Crew Name: </h2>
+        <input [(ngModel)]="this.newCrewName" type="text">
+        <br>
+        <h2> Crew Members: </h2>
+        <div class="col">
+            <input type="text">
+        </div>
+        <br>
+        <div class="col">
+            <input type="text">
+        </div>
+        <br>
+        <div class="col">
+            <input type="text">
+        </div>
+        <br>
+        <button (click)="closePopUp()"> Cancel </button>
+        <button> Add more Members... </button>
+        <button (click)="closePopUp()"> Finish </button>
+    </div>
+
     <div class="card bg-danger">
 
         <h3> Rachel's Super Crew </h3>
